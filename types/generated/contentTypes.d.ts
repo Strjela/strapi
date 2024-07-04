@@ -362,6 +362,37 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiImagetestImagetest extends Schema.CollectionType {
+  collectionName: 'imagetests';
+  info: {
+    singularName: 'imagetest';
+    pluralName: 'imagetests';
+    displayName: 'imagetest';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ImeSlike: Attribute.String;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::imagetest.imagetest',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::imagetest.imagetest',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTestTest extends Schema.CollectionType {
   collectionName: 'tests';
   info: {
@@ -821,6 +852,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::imagetest.imagetest': ApiImagetestImagetest;
       'api::test.test': ApiTestTest;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
