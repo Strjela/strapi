@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * imagetest service
+ * article service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::imagetest.imagetest');
+module.exports = createCoreService('api::article.article');

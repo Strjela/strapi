@@ -362,56 +362,44 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiImagetestImagetest extends Schema.CollectionType {
-  collectionName: 'imagetests';
+export interface ApiArticleArticle extends Schema.CollectionType {
+  collectionName: 'articles';
   info: {
-    singularName: 'imagetest';
-    pluralName: 'imagetests';
-    displayName: 'imagetest';
+    singularName: 'article';
+    pluralName: 'articles';
+    displayName: 'Article';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    ImeSlike: Attribute.String;
-    image: Attribute.Media;
+    title: Attribute.String;
+    category: Attribute.String;
+    date: Attribute.Date;
+    slug: Attribute.UID<'api::article.article', 'title'>;
+    body: Attribute.Blocks;
+    isFeatured: Attribute.Boolean;
+    isCategory: Attribute.Boolean;
+    readTime: Attribute.Integer;
+    FeatureImg: Attribute.Media;
+    author: Attribute.String;
+    avatar: Attribute.Media;
+    description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::imagetest.imagetest',
+      'api::article.article',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::imagetest.imagetest',
+      'api::article.article',
       'oneToOne',
       'admin::user'
     > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTestTest extends Schema.CollectionType {
-  collectionName: 'tests';
-  info: {
-    singularName: 'test';
-    pluralName: 'tests';
-    displayName: 'test';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    surname: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::test.test', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::test.test', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -852,8 +840,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::imagetest.imagetest': ApiImagetestImagetest;
-      'api::test.test': ApiTestTest;
+      'api::article.article': ApiArticleArticle;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
